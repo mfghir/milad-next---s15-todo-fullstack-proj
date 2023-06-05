@@ -3,9 +3,7 @@ import { hashPassword } from "@/utils/auth";
 import connectDB from "@/utils/connectDB";
 
 async function handler(req, res) {
-  if (req.method !== "POST") {
-    return;
-  }
+  if (req.method !== "POST") return;
 
   try {
     await connectDB();
