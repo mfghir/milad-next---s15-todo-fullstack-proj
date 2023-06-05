@@ -1,5 +1,12 @@
 import { GrAddCircle } from "react-icons/gr";
 import { BsAlignStart } from "react-icons/bs";
+import { FiSettings } from "react-icons/fi";
+
+import { AiOutlineFileSearch } from "react-icons/ai";
+import { MdDoneAll } from "react-icons/md";
+import { useState } from "react";
+
+import RadioButton from "../element/RadioButton";
 
 const AddTodoPage = () => {
   const [title, setTitle] = useState("");
@@ -24,28 +31,44 @@ const AddTodoPage = () => {
         </div>
 
         <div className="add-form__input--second">
-          <div className="todo">
-            <label htmlFor="todo">
-              <BsAlignStart />
-              todo
-            </label>
-            <input
-              type="radio"
-              id="todo"
-              value="todo"
-              checked={status === "todo"}
-              onChange={(e) => setStatus(e.target.value)}
-            />
-          </div>
+          <RadioButton
+            status={status}
+            setStatus={setStatus}
+            value="todo"
+            title="Todo"
+          >
+            <BsAlignStart />
+          </RadioButton>
 
-          {/* <div className="inProgress">
-            <label htmlFor="inProgress">
-              <BsAlignStart />
-              in progress
-            </label>
-            <input type="radio" id="inProgress" value="inProgress" />
-          </div> */}
+          <RadioButton
+            status={status}
+            setStatus={setStatus}
+            value="inProgress"
+            title="In Progress"
+          >
+            <FiSettings />
+          </RadioButton>
+
+          <RadioButton
+            status={status}
+            setStatus={setStatus}
+            value="review"
+            title="Review"
+          >
+            <AiOutlineFileSearch />
+          </RadioButton>
+
+          <RadioButton
+            status={status}
+            setStatus={setStatus}
+            value="done"
+            title="Done"
+          >
+            <MdDoneAll />
+          </RadioButton>
         </div>
+
+        <button>Add</button>
       </div>
     </div>
   );
