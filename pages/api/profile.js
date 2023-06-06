@@ -2,6 +2,8 @@ import User from "@/models/User";
 import { verifyPassword } from "@/utils/auth";
 import connectDB from "@/utils/connectDB";
 
+import { getSession } from "next-auth/react";
+
 async function handler(req, res) {
   try {
     await connectDB();
@@ -39,6 +41,13 @@ async function handler(req, res) {
     user.name = name;
     user.lastName = lastName;
     user.save();
+  } else if (req.method === "GET") {
+    res
+      .status(200)
+      .json({
+        status: "success",
+        data: { name: user.name, lastName: user.lastName, email: user.email },
+      });
   }
 }
 
